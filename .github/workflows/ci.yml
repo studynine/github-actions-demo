@@ -22,10 +22,13 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build  # Ensures build completes before deploying
+    needs: build
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+
+      - name: Install Heroku CLI  # ✅ Install Heroku CLI in the runner
+        run: curl https://cli-assets.heroku.com/install.sh | sh
 
       - name: Deploy to Heroku
         env:
